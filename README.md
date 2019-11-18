@@ -37,7 +37,7 @@ Creating a [AWS Key Pairs using AWSCLI](http://docs.aws.amazon.com/AWSCloudForma
 aws ec2 create-key-pair \
   --key-name hello-world-app-ec2-key-pair \
   --query 'KeyMaterial' \
-  --region eu-west-1 \
+  --region us-east-1 \
   --output text > ~/.ssh/hello-world-app-ec2-key-pair.pem
 
 chmod 400 ~/.ssh/hello-world-app-ec2-key-pair.pem

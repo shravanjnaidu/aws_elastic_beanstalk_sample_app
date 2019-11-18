@@ -73,7 +73,7 @@
   },
   {
     "ParameterKey": "ApplicationS3Bucket",
-    "ParameterValue": "hello-world-app-beanstalk"
+    "ParameterValue": "shravanjnaidu-hello-world-app-beanstalk"
   },
   {
     "ParameterKey": "ApplicationS3Artifact",
@@ -81,6 +81,6 @@
   },
   {
     "ParameterKey": "AWSRegion",
-    "ParameterValue": "eu-west-1"
+    "ParameterValue": "us-east-1"
   }
 ]

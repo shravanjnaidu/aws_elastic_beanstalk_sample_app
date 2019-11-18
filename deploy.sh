@@ -75,6 +75,7 @@ function cf_create_stack() {
     --capabilities CAPABILITY_IAM \
     --on-failure DELETE \
     --region $region
+  echo "Finished creating stack"
 }
 
 function cf_delete_stack() {
@@ -90,8 +91,8 @@ function create_bucket() {
   local region="$2"
   aws s3api create-bucket \
     --bucket $name \
-    --region $region \
-    --create-bucket-configuration LocationConstraint=$region
+    --region $region
+  
 }
 
 function delete_bucket() {
@@ -102,7 +103,7 @@ function delete_bucket() {
 
 function wait_until_cf_stack_creation() {
   local name="$1"
-  local region="$2"
+  local ="$2"
   echo "Waiting until Cloudformation stack \"${name}\" is created, takes a long time!"
   aws cloudformation wait stack-create-complete \
     --stack-name $name \
@@ -159,8 +160,10 @@ if [[ "${ARG}" == "init" ]]; then
   upload_artifact $BUCKET $KEY $REGION
 
   if [[ "${CF_STACK_EXIST}" == false ]]; then
+    echo $region
     cf_create_stack $CF_STACK_NAME $CF_TEMPLATE_FILE $CF_CONFIG_FILE $REGION
-    wait_until_cf_stack_creation $CF_STACK_NAME $REGION
+    sleep 300
+    # wait_until_cf_stack_creation $CF_STACK_NAME $REGION
     eb_init $REGION
     eb_use $STACK_ENVIRONMENT
     cp deployment/cloudwatch.config .ebextensions/
